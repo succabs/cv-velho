@@ -37,6 +37,25 @@ To sum up, after a few hours we got the project started pretty well. Learnt some
 
 What to do now? Time to think about what will the actual cv creation page look like. Probably menu on the left, cv on the right. On mobile the menu comes from hamburger menu. Who would use mobile phone to create their cv? After this it is time to end the first day with the project.
 
+Okay, I could not stop the developing for today. The cv creation is in a very good shape considering this is the first day with the project. Sadly this was a day-off from work, so the developing is not this fast during the following days.Anyway. The CV is exportable to pdf now. Had some hassle with the Image. What was wrong? I did not import Image from react-pdf :)
 
+The problem now: I can't get the app to display the same cv in pdf as I am modifying it. How do I get around it? For now the solution seems to be the following: I will display it in the menu bar as a separate smaller window. A bit of a challenge comes from the fact that the styling of the react-pdf is not similar to my styling of the cv modification page. The next step is to make them as similar as they can be. Also, creating the base cv and its forms to be perfectly aligned. In short, the to-do for following days:
+
+- Style the pdf & app
+- Add necessary fields and labels to both
+- Get the first template to work well
+- Buttons to add/delete fields
+- Button to change the cv language to English and Swedish
+- You forgot Jenkins, it was one of the reasons of this project! Use it!
+- More templates
+- Get domain
+- Publish
+- Create new cv with this
+- Get a job with it
+- Prove it works!
+- Sell it to big company
+- Get rich
+
+Peace out.
 
 
