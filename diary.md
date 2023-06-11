@@ -27,7 +27,15 @@ Update after few hours: Watched two hour-long figma tutorials from Youtube (http
 
 Starting with creating the placeholder components. After that, putting the texts and exporting images from Figma. Then working with CSS to get the desktop site to look somewhat okay, component by component.
 
+Now I am questioning about the time I spent with Figma. I used so much time to do things there pixel perfect, but now If I use responsive flexbox, I can't copy paste things from Figma. What was the point of it? Should I just use it for rapid sketching of the UI? Have to read about it later.
 
+Hmm. Maybe I will use TailwindCSS for the styling. Let's add it to the project.
+
+Tailwind is added, styling is done on front page. I read more about Figma, and decided that it will be used as a wireframing tool. The real styling will be done with Tailwind. Time to commit again.
+
+To sum up, after a few hours we got the project started pretty well. Learnt some Figma and the usage of Tailwind. Still not sure if I am a fan of styling the app in Tailwind way. It makes html code messier, but it is super easy to use.
+
+What to do now? Time to think about what will the actual cv creation page look like. Probably menu on the left, cv on the right. On mobile the menu comes from hamburger menu. Who would use mobile phone to create their cv? After this it is time to end the first day with the project.
 
 
 
