@@ -11,7 +11,6 @@ function App() {
         <Header />
         <StartButton />
         <Features />
-
         <Footer />
       </div>
     </>
