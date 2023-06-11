@@ -1,11 +1,17 @@
 import "./App.css";
+import Header from "./components/Header";
+import Features from "./components/Features";
+import StartButton from "./components/StartButton";
+import Footer from "./components/Footer";
 
 function App() {
   return (
     <>
-      <div>
-        <h1>CV-Velho</h1>
-        <p>Luo itsellesi tyylikäs CV tällä helppokäyttöisellä työkalulla!</p>
+      <div className="text-white">
+        <Header />
+        <Features />
+        <StartButton />
+        <Footer />
       </div>
     </>
   );

@@ -23,4 +23,12 @@ The project files are now ready for the first git commit. After that is time to 
 
 The CV structure will be a structure that I learnt on a university course. And oh, if I forgot to mention it, the app will be in Finnish. Hence the name "CV-Velho", "CV-Wizard" in English.
 
+Update after few hours: Watched two hour-long figma tutorials from Youtube (https://www.youtube.com/watch?v=g1uZcsZnkaA and https://www.youtube.com/watch?v=QtkmzRpMPhU). Good hands-on experience to the software. Got the desktop and mobile front pages somewhat ready, still not quite satisfied. But enough to start implementing it on React.
+
+Starting with creating the placeholder components. After that, putting the texts and exporting images from Figma. Then working with CSS to get the desktop site to look somewhat okay, component by component.
+
+
+
+
+
 
