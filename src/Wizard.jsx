@@ -25,6 +25,7 @@ const styles = StyleSheet.create({
   section: {
     margin: 0,
     padding: 5,
+    borderTop: 1,
   },
 });
 
@@ -38,11 +39,11 @@ const CVDocument = ({ name, education, workExperience, referees }) => (
       <View style={styles.section}>
         <Text>{name}</Text>
         <Text>Yhteystiedot</Text>
-        <Text>Koulutus</Text>
+        <Text style={styles.section}>Koulutus</Text>
         <Text>{education}</Text>
-        <Text>Työkokemus</Text>
+        <Text style={styles.section}>Työkokemus</Text>
         <Text>{workExperience}</Text>
-        <Text>Suosittelijat</Text>
+        <Text style={styles.section}>Suosittelijat</Text>
         <Text>{referees}</Text>
       </View>
     </Page>
@@ -57,12 +58,29 @@ function Wizard() {
   return (
     <>
       <div className="flex">
-        <div className="w-1/4 h-screen bg-gray-900 text-white p-4 border-r-4 border-orange-500 p-4 flex flex-col">
+        <div className="w-1/4 h-screen text-white p-4 border-r-4 border-orange-500 p-4 flex flex-col">
           <ul className="space-y-2">
             <li>Teema</li>
+            <div className="relative w-full lg:max-w-sm">
+              <select className="w-full p-2.5 text-gray-100 bg-gray-800 border rounded-md shadow-sm outline-none appearance-none focus:border-indigo-600">
+                <option>Pohja 1</option>
+                <option>Pohja 2</option>
+                <option>Pohja 3</option>
+                <option>Pohja 4</option>
+              </select>
+            </div>
             <li>Kieli</li>
+            <div className="relative w-full lg:max-w-sm">
+              <select className="w-full p-2.5 text-gray-100 bg-gray-800 border rounded-md shadow-sm outline-none appearance-none focus:border-indigo-600">
+                <option>Suomi</option>
+                <option>Englanti</option>
+                <option>Ruotsi</option>
+              </select>
+            </div>
           </ul>
+
           <div className="text-center py-4 mt-auto">
+            <p>Esikatselu </p>
             <PDFViewer>
               <CVDocument {...{ name, education, workExperience, referees }} />
             </PDFViewer>
