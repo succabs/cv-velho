@@ -1,5 +1,6 @@
 import "./App.css";
 import cvpic from "./assets/cvimage.jpeg"; // Tell webpack this JS file uses this image
+import garamond from "./assets/fonts/Cormorant_Garamond/CormorantGaramond-Regular.ttf"; // Tell webpack this JS file uses this image
 import React, { useState } from "react";
 import {
   PDFDownloadLink,
@@ -10,51 +11,160 @@ import {
   Document,
   StyleSheet,
   Image,
+  Font,
 } from "@react-pdf/renderer";
 
-// Create styles
-const styles = StyleSheet.create({
-  page: {
-    backgroundColor: "#FFFFFF",
-  },
-  day: {
-    margin: 10,
-    padding: 10,
-    textAlign: "right",
-  },
-  section: {
-    margin: 0,
-    padding: 5,
-    borderTop: 1,
-  },
+Font.register({
+  family: "Garamond",
+  src: garamond,
 });
-
-const CVDocument = ({ name, education, workExperience, referees }) => (
-  <Document>
-    <Page size="A4" style={styles.page}>
-      <Text style={styles.day}>11.6.2023</Text>
-      <View>
-        <Image style={{ width: "100px" }} src={cvpic} />
-      </View>
-      <View style={styles.section}>
-        <Text>{name}</Text>
-        <Text>Yhteystiedot</Text>
-        <Text style={styles.section}>Koulutus</Text>
-        <Text>{education}</Text>
-        <Text style={styles.section}>Työkokemus</Text>
-        <Text>{workExperience}</Text>
-        <Text style={styles.section}>Suosittelijat</Text>
-        <Text>{referees}</Text>
-      </View>
-    </Page>
-  </Document>
-);
 
 function Wizard() {
   const [name, setName] = useState("Etunimi Sukunimi");
-  const [education, setEducation] = useState("BSc in Computer Science");
+  const [address, setAddress] = useState("Katutie 7, 40740 Jyväskylä");
+  const [phone, setPhone] = useState("+35840555987");
+  const [email, setEmail] = useState("etunimi.sukunimi@gmail.com");
+  const [education, setEducation] = useState("Jyväskylän yliopisto");
   const [workExperience, setWorkExperience] = useState("Software Developer");
   const [referees, setReferees] = useState("Jane Smith");
+
+  const [imageUrl, setImageUrl] = useState(cvpic);
+
+  const handleImageClick = () => {
+    const fileInput = document.getElementById("upload-image");
+    fileInput.click();
+  };
+
+  const handleImageUpload = (event) => {
+    const file = event.target.files[0];
+    const imageUrl = URL.createObjectURL(file);
+
+    setImageUrl(imageUrl);
+  };
+
+  // Create styles
+  const styles = StyleSheet.create({
+    page: {
+      backgroundColor: "#FFFFFF",
+      fontFamily: "Garamond",
+      lineHeight: 1.2,
+    },
+    date: {
+      margin: 10,
+      padding: 10,
+      textAlign: "right",
+    },
+    borderYla: {
+      flexDirection: "row",
+      borderTop: 1,
+    },
+    heading: {
+      margin: 0,
+      padding: 5,
+      fontWeight: "bold",
+    },
+    infoText: {
+      margin: "auto",
+      fontWeight: "normal",
+      fontSize: 11,
+    },
+    sectionHeading: {
+      margin: 0,
+      padding: 5,
+      paddingLeft: 0,
+      fontWeight: 500,
+      fontSize: 16,
+    },
+    sectionText: {
+      margin: 0,
+      paddingLeft: 0,
+      fontWeight: "normal",
+      fontSize: 11,
+    },
+    sectionDate: {
+      marginTop: 32,
+      padding: 5,
+      paddingLeft: 0,
+    },
+    cvimage: {
+      width: 100,
+      padding: 5,
+      marginBottom: 10,
+    },
+  });
+
+  const CVDocument = ({
+    name,
+    address,
+    phone,
+    email,
+    education,
+    workExperience,
+    referees,
+  }) => (
+    <Document>
+      <Page size="A4" style={styles.page}>
+        <View style={styles.date}>
+          <Text>11.6.2023</Text>
+        </View>
+        <View style={{ flexDirection: "row" }}>
+          <View style={{ flex: 1, maxWidth: "25%", alignItems: "center" }}>
+            <Image style={styles.cvimage} src={imageUrl} />
+          </View>
+          <View style={{ flex: 2 }}>
+            <Text style={styles.sectionHeading}>{name}</Text>
+            <Text style={styles.sectionText}>Osoite: {address}</Text>
+            <Text style={styles.sectionText}>Puhelinnumero: {phone}</Text>
+            <Text style={styles.sectionText}>Sähköposti: {email}</Text>
+          </View>
+        </View>
+        <View style={styles.borderYla}>
+          <View style={{ flex: 1, maxWidth: "25%" }}>
+            <Text style={styles.heading}>Yhteenveto</Text>
+          </View>
+          <View style={{ flex: 2 }}>
+            <Text style={styles.infoText}>
+              Nuori ja motivoitunut opiskelija. Kokemusta monenlaisista
+              kesätöistä. Valmiina kohti uusia haasteita.
+            </Text>
+          </View>
+        </View>
+        <View style={styles.borderYla}>
+          <View style={{ flex: 1, maxWidth: "25%" }}>
+            <Text style={styles.heading}>Koulutus</Text>
+          </View>
+          <View style={{ flex: 2 }}>
+            <Text style={styles.sectionHeading}>{education}</Text>
+            <Text style={styles.sectionText}>Pääaine</Text>
+            <Text style={styles.sectionText}>Keskiarvo</Text>
+            <Text style={styles.sectionText}>Lisätiedot</Text>
+            <Text style={styles.sectionDate}>2016-2023</Text>
+          </View>
+        </View>
+        <View style={styles.borderYla}>
+          <View style={{ flex: 1, maxWidth: "25%" }}>
+            <Text style={styles.heading}>Työkokemus</Text>
+          </View>
+          <View style={{ flex: 2 }}>
+            <Text style={styles.sectionHeading}>{workExperience}</Text>
+            <Text style={styles.sectionText}>Lyhyt kuvaus työstä</Text>
+            <Text style={styles.sectionDate}>6/21-8/21</Text>
+          </View>
+        </View>
+        <View style={styles.borderYla}>
+          <View style={{ flex: 1, maxWidth: "25%" }}>
+            <Text style={styles.heading}>Suosittelijat</Text>
+          </View>
+          <View style={{ flex: 2 }}>
+            <Text style={styles.sectionHeading}>{referees}</Text>
+            <Text style={styles.sectionText}>Puhelinnumero</Text>
+            <Text style={styles.sectionText}>Sähköposti</Text>
+          </View>
+        </View>
+      </Page>
+    </Document>
+  );
+
   return (
     <>
       <div className="flex">
@@ -82,14 +192,32 @@ function Wizard() {
           <div className="text-center py-4 mt-auto">
             <p>Esikatselu </p>
             <PDFViewer>
-              <CVDocument {...{ name, education, workExperience, referees }} />
+              <CVDocument
+                {...{
+                  name,
+                  phone,
+                  address,
+                  email,
+                  education,
+                  workExperience,
+                  referees,
+                }}
+              />
             </PDFViewer>
             <div className="py-2">
               <button className="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded-full">
                 <PDFDownloadLink
                   document={
                     <CVDocument
-                      {...{ name, education, workExperience, referees }}
+                      {...{
+                        name,
+                        phone,
+                        address,
+                        email,
+                        education,
+                        workExperience,
+                        referees,
+                      }}
                     />
                   }
                   fileName="cv.pdf"
@@ -108,37 +236,102 @@ function Wizard() {
           <div className="p-4">
             {/* Editable text fields */}
             <h2 className="text-right">11.6.2023</h2>
-            <p contentEditable onBlur={(e) => setName(e.target.textContent)}>
+            <img className="w-1/6 h-1/6" src={imageUrl} alt="Logo" />
+            <input
+              type="file"
+              accept="image/*"
+              id="upload-image"
+              style={{ display: "none" }}
+              onChange={handleImageUpload}
+            />
+            <button
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+              onClick={handleImageClick}
+            >
+              Lataa kuva
+            </button>
+            <p
+              className="bg-slate-100"
+              contentEditable
+              onBlur={(e) => setName(e.target.textContent)}
+            >
               {name}
             </p>
-            <h2>Yhteystiedot</h2>
-            <h2>Yhteenveto</h2>
-            <p>Puhelinnumero</p>
-            <p>Osoite</p>
-            <p>Sähköposti</p>
-            <h2>Koulutus</h2>
-            <p
-              contentEditable
-              onBlur={(e) => setEducation(e.target.textContent)}
-            >
-              {education}
-            </p>
-            <p className="text-right">2016-2023</p>
-            <h2>Työkokemus</h2>
-            <p
-              contentEditable
-              onBlur={(e) => setWorkExperience(e.target.textContent)}
-            >
-              {workExperience}
-            </p>
-            <h2>Suosittelijat</h2>
-            <p
-              contentEditable
-              onBlur={(e) => setReferees(e.target.textContent)}
-            >
-              {referees}
-            </p>
-            {/* Placeholder for picture */}
+            <div className="flex">
+              <div className="w-1/4">
+                <h2>Yhteystiedot</h2>
+              </div>
+              <div className="w-3/4">
+                <h2>Yhteenveto</h2>
+                <p>Puhelinnumero</p>
+                <p
+                  className="bg-slate-100"
+                  contentEditable
+                  onBlur={(e) => setPhone(e.target.textContent)}
+                >
+                  {phone}
+                </p>
+                <p>Osoite</p>
+                <p
+                  className="bg-slate-100"
+                  contentEditable
+                  onBlur={(e) => setAddress(e.target.textContent)}
+                >
+                  {address}
+                </p>
+                <p>Sähköposti</p>
+                <p
+                  className="bg-slate-100"
+                  contentEditable
+                  onBlur={(e) => setEmail(e.target.textContent)}
+                >
+                  {email}
+                </p>
+              </div>
+            </div>
+            <div className="flex">
+              <div className="w-1/4">
+                <h2>Koulutus</h2>
+              </div>
+              <div className="w-3/4">
+                <p
+                  className="bg-slate-100"
+                  contentEditable
+                  onBlur={(e) => setEducation(e.target.textContent)}
+                >
+                  {education}
+                </p>
+                <p className="text-right">2016-2023</p>
+              </div>
+            </div>
+            <div className="flex">
+              <div className="w-1/4">
+                <h2>Työkokemus</h2>
+              </div>
+              <div className="w-3/4">
+                <p
+                  className="bg-slate-100"
+                  contentEditable
+                  onBlur={(e) => setWorkExperience(e.target.textContent)}
+                >
+                  {workExperience}
+                </p>
+              </div>
+            </div>
+            <div className="flex">
+              <div className="w-1/4">
+                <h2>Suosittelijat</h2>
+              </div>
+              <div className="w-3/4">
+                <p
+                  className="bg-slate-100"
+                  contentEditable
+                  onBlur={(e) => setReferees(e.target.textContent)}
+                >
+                  {referees}
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>

@@ -58,4 +58,12 @@ The problem now: I can't get the app to display the same cv in pdf as I am modif
 
 Peace out.
 
+## Day 2
 
+Today was a rather heavy day in the forest. Mind and body are tired. Anyway, let's continue the development. I need this project to my portfolio as soon as possible. I have to wake up tomorrow at 5:30, so not much time today for the project. Last night I made the dropdown options to menu for changing the template and language. The functions are not ready though. Plan for today: Add the right fields and labels to the cv and the editing area. Try to style them a bit. Maybe buttons to add/delete fields. Luckily I have made the same kind of buttons in my previous project (social media app) so I don't have to think about them much.
+
+The styling and adding fields and labels is pretty boring, so I won't write anything about it here. Copy&paste job.
+
+I read about the right font in CV. I picked a few good options: Sans-serifs (Arial,Calibri,Verdana), Serifs(Garamond,Georgia). Font size should be 11-12. Riviväli (idk whats that in english i am too tired to check) 1.15-1.4. Let's put that into use.
+
+Uploading your own picture now works. Got to style the picture to fit better to cv. Also the editor is styled a bit better. Time to commit. Forgot earlier. Many changes, too many.
