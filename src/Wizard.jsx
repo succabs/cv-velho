@@ -20,13 +20,30 @@ Font.register({
 });
 
 function Wizard() {
-  const [name, setName] = useState("Etunimi Sukunimi");
+  const [date, setDate] = useState("12.6.2023");
+  const [name, setName] = useState("Erkki Esimerkki");
   const [address, setAddress] = useState("Katutie 7, 40740 Jyväskylä");
   const [phone, setPhone] = useState("+35840555987");
-  const [email, setEmail] = useState("etunimi.sukunimi@gmail.com");
+  const [email, setEmail] = useState("erkki.esimerkki@gmail.com");
+
+  const [description, setDescription] = useState(
+    "Nuori ja motivoitunut opiskelija. Valmis uuteen seikkailuun."
+  );
+
   const [education, setEducation] = useState("Jyväskylän yliopisto");
-  const [workExperience, setWorkExperience] = useState("Software Developer");
-  const [referees, setReferees] = useState("Jane Smith");
+  const [major, setMajor] = useState("Tietotekniikka");
+  const [gpa, setGpa] = useState("keskiarvo 3");
+  const [eduYears, setEduYears] = useState("2016-2020");
+
+  const [workExperience, setWorkExperience] = useState("Asiakaspalvelija");
+  const [workDesc, setWorkDesc] = useState(
+    "Toimin asiakaspalvelijana iloisella asenteella."
+  );
+  const [workYears, setWorkYears] = useState("06/20-08/20");
+
+  const [referees, setReferees] = useState("Seppo Suosittelija");
+  const [refereePhone, setRefereePhone] = useState("Seppo Suosittelija");
+  const [refereeMail, setRefereeMail] = useState("Seppo Suosittelija");
 
   const [imageUrl, setImageUrl] = useState(cvpic);
 
@@ -82,9 +99,10 @@ function Wizard() {
       fontSize: 11,
     },
     sectionDate: {
-      marginTop: 32,
+      marginTop: 0,
       padding: 5,
       paddingLeft: 0,
+      textAlign: "right",
     },
     cvimage: {
       width: 100,
@@ -105,7 +123,7 @@ function Wizard() {
     <Document>
       <Page size="A4" style={styles.page}>
         <View style={styles.date}>
-          <Text>11.6.2023</Text>
+          <Text>{date}</Text>
         </View>
         <View style={{ flexDirection: "row" }}>
           <View style={{ flex: 1, maxWidth: "25%", alignItems: "center" }}>
@@ -134,11 +152,16 @@ function Wizard() {
             <Text style={styles.heading}>Koulutus</Text>
           </View>
           <View style={{ flex: 2 }}>
-            <Text style={styles.sectionHeading}>{education}</Text>
-            <Text style={styles.sectionText}>Pääaine</Text>
-            <Text style={styles.sectionText}>Keskiarvo</Text>
-            <Text style={styles.sectionText}>Lisätiedot</Text>
-            <Text style={styles.sectionDate}>2016-2023</Text>
+            <View style={{ flexDirection: "row" }}>
+              <View style={{ flex: 1 }}>
+                <Text style={styles.sectionHeading}>{education}</Text>
+              </View>
+              <View style={{ flex: 2 }}>
+                <Text style={styles.sectionDate}>{eduYears}</Text>
+              </View>
+            </View>
+            <Text style={styles.sectionText}>{major}</Text>
+            <Text style={styles.sectionText}>{gpa}</Text>
           </View>
         </View>
         <View style={styles.borderYla}>
@@ -201,6 +224,9 @@ function Wizard() {
                   education,
                   workExperience,
                   referees,
+                  major,
+                  gpa,
+                  eduYears,
                 }}
               />
             </PDFViewer>
@@ -217,6 +243,9 @@ function Wizard() {
                         education,
                         workExperience,
                         referees,
+                        major,
+                        gpa,
+                        eduYears,
                       }}
                     />
                   }
@@ -235,34 +264,38 @@ function Wizard() {
           {/* CV content */}
           <div className="p-4">
             {/* Editable text fields */}
-            <h2 className="text-right">11.6.2023</h2>
-            <img className="w-1/6 h-1/6" src={imageUrl} alt="Logo" />
-            <input
-              type="file"
-              accept="image/*"
-              id="upload-image"
-              style={{ display: "none" }}
-              onChange={handleImageUpload}
-            />
-            <button
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-              onClick={handleImageClick}
-            >
-              Lataa kuva
-            </button>
             <p
-              className="bg-slate-100"
+              className="bg-slate-100 text-right"
               contentEditable
-              onBlur={(e) => setName(e.target.textContent)}
+              onBlur={(e) => setDate(e.target.textContent)}
             >
-              {name}
+              {date}
             </p>
             <div className="flex">
               <div className="w-1/4">
-                <h2>Yhteystiedot</h2>
+                <img className="w-1/2" src={imageUrl} alt="Logo" />
+                <input
+                  type="file"
+                  accept="image/*"
+                  id="upload-image"
+                  style={{ display: "none" }}
+                  onChange={handleImageUpload}
+                />
+                <button
+                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                  onClick={handleImageClick}
+                >
+                  Lataa kuva
+                </button>
               </div>
               <div className="w-3/4">
-                <h2>Yhteenveto</h2>
+                <p
+                  className="bg-slate-100"
+                  contentEditable
+                  onBlur={(e) => setName(e.target.textContent)}
+                >
+                  {name}
+                </p>
                 <p>Puhelinnumero</p>
                 <p
                   className="bg-slate-100"
@@ -289,11 +322,34 @@ function Wizard() {
                 </p>
               </div>
             </div>
-            <div className="flex">
+
+            <div className="flex border-t-2">
+              <div className="w-1/4">
+                <h2>Yhteenveto</h2>
+              </div>
+              <div className="w-3/4">
+                <p
+                  className="bg-slate-100"
+                  contentEditable
+                  onBlur={(e) => setDescription(e.target.textContent)}
+                >
+                  {description}
+                </p>
+              </div>
+            </div>
+
+            <div className="flex border-t-2">
               <div className="w-1/4">
                 <h2>Koulutus</h2>
               </div>
               <div className="w-3/4">
+                <p
+                  className="bg-slate-100 text-right"
+                  contentEditable
+                  onBlur={(e) => setEduYears(e.target.textContent)}
+                >
+                  {eduYears}
+                </p>
                 <p
                   className="bg-slate-100"
                   contentEditable
@@ -301,10 +357,23 @@ function Wizard() {
                 >
                   {education}
                 </p>
-                <p className="text-right">2016-2023</p>
+                <p
+                  className="bg-slate-100"
+                  contentEditable
+                  onBlur={(e) => setMajor(e.target.textContent)}
+                >
+                  {major}
+                </p>
+                <p
+                  className="bg-slate-100"
+                  contentEditable
+                  onBlur={(e) => setGpa(e.target.textContent)}
+                >
+                  {gpa}
+                </p>
               </div>
             </div>
-            <div className="flex">
+            <div className="flex border-t-2">
               <div className="w-1/4">
                 <h2>Työkokemus</h2>
               </div>
@@ -318,7 +387,7 @@ function Wizard() {
                 </p>
               </div>
             </div>
-            <div className="flex">
+            <div className="flex border-t-2">
               <div className="w-1/4">
                 <h2>Suosittelijat</h2>
               </div>

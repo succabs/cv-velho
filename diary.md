@@ -67,3 +67,14 @@ The styling and adding fields and labels is pretty boring, so I won't write anyt
 I read about the right font in CV. I picked a few good options: Sans-serifs (Arial,Calibri,Verdana), Serifs(Garamond,Georgia). Font size should be 11-12. Riviväli (idk whats that in english i am too tired to check) 1.15-1.4. Let's put that into use.
 
 Uploading your own picture now works. Got to style the picture to fit better to cv. Also the editor is styled a bit better. Time to commit. Forgot earlier. Many changes, too many.
+
+Added some more fields, labels and styling. Starting to look better, but not at all ready. Still happy with the progress given the little time I had to work on it. Now it's time to watch some movie and sleep. 
+
+All work and no play makes Arttu a dull boy
+All work and no play makes Arttu a dull boy
+All work and no play makes Arttu a dull boy
+All work and no play makes Arttu a dull boy
+All work and no play makes Arttu a dull boy
+All work and no play makes Arttu a dull boy
+
+PS. I am doing the development with VSCode, but writing this diary with Vim. It was easy to yank and paste that sentence, I am no Jack Nicholson.
