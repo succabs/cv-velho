@@ -1,6 +1,6 @@
 import "./App.css";
 import cvpic from "./assets/cvimage.jpeg"; // Tell webpack this JS file uses this image
-import garamond from "./assets/fonts/Cormorant_Garamond/CormorantGaramond-Regular.ttf"; // Tell webpack this JS file uses this image
+import garamond from "./assets/fonts/CormorantGaramond-Regular.ttf"; // Tell webpack this JS file uses this image
 import React, { useState } from "react";
 import {
   PDFDownloadLink,
