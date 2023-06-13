@@ -68,7 +68,7 @@ I read about the right font in CV. I picked a few good options: Sans-serifs (Ari
 
 Uploading your own picture now works. Got to style the picture to fit better to cv. Also the editor is styled a bit better. Time to commit. Forgot earlier. Many changes, too many.
 
-Added some more fields, labels and styling. Starting to look better, but not at all ready. Still happy with the progress given the little time I had to work on it. Now it's time to watch some movie and sleep. 
+Added some more fields, labels and styling. Starting to look better, but not at all ready. Still happy with the progress given the little time I had to work on it. Now it's time to watch some movie and sleep.
 
 All work and no play makes Arttu a dull boy
 All work and no play makes Arttu a dull boy
@@ -77,4 +77,8 @@ All work and no play makes Arttu a dull boy
 All work and no play makes Arttu a dull boy
 All work and no play makes Arttu a dull boy
 
-PS. I am doing the development with VSCode, but writing this diary with Vim. It was easy to yank and paste that sentence, I am no Jack Nicholson.
+## Day 3
+
+Not much time to put into the project today. It is already late and I am soon off to sleep.
+
+All the basic fields are now done. Some padding and margin values need to be adjusted on the pdf. The cv editor itself looks horrible, need to adjust it. Much. That is a job for tomorrow. Maybe I will get to it tomorrow? Also, I could save the CV data to localStorage? Maybe when the project is done on other parts. So many ideas, so little time.

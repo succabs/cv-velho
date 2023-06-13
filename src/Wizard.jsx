@@ -42,8 +42,12 @@ function Wizard() {
   const [workYears, setWorkYears] = useState("06/20-08/20");
 
   const [referees, setReferees] = useState("Seppo Suosittelija");
-  const [refereePhone, setRefereePhone] = useState("Seppo Suosittelija");
-  const [refereeMail, setRefereeMail] = useState("Seppo Suosittelija");
+  const [refereePhone, setRefereePhone] = useState("+35045665551");
+  const [refereeMail, setRefereeMail] = useState(
+    "seppo.suosittelija@osoite.com"
+  );
+  const [refereeCompany, setRefereeCompany] = useState("Suosittelijat Oy");
+  const [refereeRelationship, setRefereeRelationship] = useState("esimies");
 
   const [imageUrl, setImageUrl] = useState(cvpic);
 
@@ -82,8 +86,10 @@ function Wizard() {
     },
     infoText: {
       margin: "auto",
+      marginLeft: 0,
       fontWeight: "normal",
       fontSize: 11,
+      textAlign: "left",
     },
     sectionHeading: {
       margin: 0,
@@ -113,12 +119,21 @@ function Wizard() {
 
   const CVDocument = ({
     name,
-    address,
     phone,
+    address,
     email,
+    description,
     education,
+    eduYears,
+    major,
+    gpa,
     workExperience,
+    workDesc,
     referees,
+    refereeMail,
+    refereePhone,
+    refereeCompany,
+    refereeRelationship,
   }) => (
     <Document>
       <Page size="A4" style={styles.page}>
@@ -141,10 +156,7 @@ function Wizard() {
             <Text style={styles.heading}>Yhteenveto</Text>
           </View>
           <View style={{ flex: 2 }}>
-            <Text style={styles.infoText}>
-              Nuori ja motivoitunut opiskelija. Kokemusta monenlaisista
-              kesätöistä. Valmiina kohti uusia haasteita.
-            </Text>
+            <Text style={styles.infoText}>{description}</Text>
           </View>
         </View>
         <View style={styles.borderYla}>
@@ -169,9 +181,15 @@ function Wizard() {
             <Text style={styles.heading}>Työkokemus</Text>
           </View>
           <View style={{ flex: 2 }}>
-            <Text style={styles.sectionHeading}>{workExperience}</Text>
-            <Text style={styles.sectionText}>Lyhyt kuvaus työstä</Text>
-            <Text style={styles.sectionDate}>6/21-8/21</Text>
+            <View style={{ flexDirection: "row" }}>
+              <View style={{ flex: 1 }}>
+                <Text style={styles.sectionHeading}>{workExperience}</Text>
+              </View>
+              <View style={{ flex: 2 }}>
+                <Text style={styles.sectionDate}>{workYears}</Text>
+              </View>
+            </View>
+            <Text style={styles.sectionText}>{workDesc}</Text>
           </View>
         </View>
         <View style={styles.borderYla}>
@@ -180,8 +198,10 @@ function Wizard() {
           </View>
           <View style={{ flex: 2 }}>
             <Text style={styles.sectionHeading}>{referees}</Text>
-            <Text style={styles.sectionText}>Puhelinnumero</Text>
-            <Text style={styles.sectionText}>Sähköposti</Text>
+            <Text style={styles.sectionText}>{refereeCompany}</Text>
+            <Text style={styles.sectionText}>{refereeRelationship}</Text>
+            <Text style={styles.sectionText}>{refereeMail}</Text>
+            <Text style={styles.sectionText}>{refereePhone}</Text>
           </View>
         </View>
       </Page>
@@ -221,12 +241,18 @@ function Wizard() {
                   phone,
                   address,
                   email,
+                  description,
                   education,
-                  workExperience,
-                  referees,
+                  eduYears,
                   major,
                   gpa,
-                  eduYears,
+                  workExperience,
+                  workDesc,
+                  referees,
+                  refereeCompany,
+                  refereeRelationship,
+                  refereeMail,
+                  refereePhone,
                 }}
               />
             </PDFViewer>
@@ -379,11 +405,25 @@ function Wizard() {
               </div>
               <div className="w-3/4">
                 <p
+                  className="bg-slate-100  text-right"
+                  contentEditable
+                  onBlur={(e) => setWorkYears(e.target.textContent)}
+                >
+                  {workYears}
+                </p>
+                <p
                   className="bg-slate-100"
                   contentEditable
                   onBlur={(e) => setWorkExperience(e.target.textContent)}
                 >
                   {workExperience}
+                </p>
+                <p
+                  className="bg-slate-100"
+                  contentEditable
+                  onBlur={(e) => setWorkDesc(e.target.textContent)}
+                >
+                  {workDesc}
                 </p>
               </div>
             </div>
@@ -398,6 +438,34 @@ function Wizard() {
                   onBlur={(e) => setReferees(e.target.textContent)}
                 >
                   {referees}
+                </p>
+                <p
+                  className="bg-slate-100"
+                  contentEditable
+                  onBlur={(e) => setRefereeCompany(e.target.textContent)}
+                >
+                  {refereeCompany}
+                </p>
+                <p
+                  className="bg-slate-100"
+                  contentEditable
+                  onBlur={(e) => setRefereeRelationship(e.target.textContent)}
+                >
+                  {refereeRelationship}
+                </p>
+                <p
+                  className="bg-slate-100"
+                  contentEditable
+                  onBlur={(e) => setRefereeMail(e.target.textContent)}
+                >
+                  {refereeMail}
+                </p>
+                <p
+                  className="bg-slate-100"
+                  contentEditable
+                  onBlur={(e) => setRefereePhone(e.target.textContent)}
+                >
+                  {refereePhone}
                 </p>
               </div>
             </div>
