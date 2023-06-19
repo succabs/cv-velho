@@ -82,3 +82,7 @@ All work and no play makes Arttu a dull boy
 Not much time to put into the project today. It is already late and I am soon off to sleep.
 
 All the basic fields are now done. Some padding and margin values need to be adjusted on the pdf. The cv editor itself looks horrible, need to adjust it. Much. That is a job for tomorrow. Maybe I will get to it tomorrow? Also, I could save the CV data to localStorage? Maybe when the project is done on other parts. So many ideas, so little time.
+
+## Day 4
+
+Had some time off computer. Now I'm back. Going to add font options to the menu. Maybe some styling. Maybe the options to work. We'll see. Looking at the app with fresh eyes, it looks pretty good, thanks to TailwindCSS.
