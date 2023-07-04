@@ -1,23 +1,9 @@
 import "./App.css";
 import cvpic from "./assets/cvimage.jpeg"; // Tell webpack this JS file uses this image
-import garamond from "./assets/fonts/CormorantGaramond-Regular.ttf"; // Tell webpack this JS file uses this image
+import CVDocument from "./components/CVDocument";
+import Footer from "./components/Footer";
 import React, { useState } from "react";
-import {
-  PDFDownloadLink,
-  PDFViewer,
-  View,
-  Page,
-  Text,
-  Document,
-  StyleSheet,
-  Image,
-  Font,
-} from "@react-pdf/renderer";
-
-Font.register({
-  family: "Garamond",
-  src: garamond,
-});
+import { PDFDownloadLink, PDFViewer } from "@react-pdf/renderer";
 
 function Wizard() {
   const [date, setDate] = useState("12.6.2023");
@@ -25,22 +11,18 @@ function Wizard() {
   const [address, setAddress] = useState("Katutie 7, 40740 Jyväskylä");
   const [phone, setPhone] = useState("+35840555987");
   const [email, setEmail] = useState("erkki.esimerkki@gmail.com");
-
   const [description, setDescription] = useState(
     "Nuori ja motivoitunut opiskelija. Valmis uuteen seikkailuun."
   );
-
   const [education, setEducation] = useState("Jyväskylän yliopisto");
   const [major, setMajor] = useState("Tietotekniikka");
   const [gpa, setGpa] = useState("keskiarvo 3");
   const [eduYears, setEduYears] = useState("2016-2020");
-
   const [workExperience, setWorkExperience] = useState("Asiakaspalvelija");
   const [workDesc, setWorkDesc] = useState(
     "Toimin asiakaspalvelijana iloisella asenteella."
   );
   const [workYears, setWorkYears] = useState("06/20-08/20");
-
   const [referees, setReferees] = useState("Seppo Suosittelija");
   const [refereePhone, setRefereePhone] = useState("+35045665551");
   const [refereeMail, setRefereeMail] = useState(
@@ -48,7 +30,6 @@ function Wizard() {
   );
   const [refereeCompany, setRefereeCompany] = useState("Suosittelijat Oy");
   const [refereeRelationship, setRefereeRelationship] = useState("esimies");
-
   const [imageUrl, setImageUrl] = useState(cvpic);
 
   const handleImageClick = () => {
@@ -62,151 +43,6 @@ function Wizard() {
 
     setImageUrl(imageUrl);
   };
-
-  // Create styles
-  const styles = StyleSheet.create({
-    page: {
-      backgroundColor: "#FFFFFF",
-      fontFamily: "Garamond",
-      lineHeight: 1.2,
-    },
-    date: {
-      margin: 10,
-      padding: 10,
-      textAlign: "right",
-    },
-    borderYla: {
-      flexDirection: "row",
-      borderTop: 1,
-    },
-    heading: {
-      margin: 0,
-      padding: 5,
-      fontWeight: "bold",
-    },
-    infoText: {
-      margin: "auto",
-      marginLeft: 0,
-      fontWeight: "normal",
-      fontSize: 11,
-      textAlign: "left",
-    },
-    sectionHeading: {
-      margin: 0,
-      padding: 5,
-      paddingLeft: 0,
-      fontWeight: 500,
-      fontSize: 16,
-    },
-    sectionText: {
-      margin: 0,
-      paddingLeft: 0,
-      fontWeight: "normal",
-      fontSize: 11,
-    },
-    sectionDate: {
-      marginTop: 0,
-      padding: 5,
-      paddingLeft: 0,
-      textAlign: "right",
-    },
-    cvimage: {
-      width: 100,
-      padding: 5,
-      marginBottom: 10,
-    },
-  });
-
-  const CVDocument = ({
-    name,
-    phone,
-    address,
-    email,
-    description,
-    education,
-    eduYears,
-    major,
-    gpa,
-    workExperience,
-    workDesc,
-    referees,
-    refereeMail,
-    refereePhone,
-    refereeCompany,
-    refereeRelationship,
-  }) => (
-    <Document>
-      <Page size="A4" style={styles.page}>
-        <View style={styles.date}>
-          <Text>{date}</Text>
-        </View>
-        <View style={{ flexDirection: "row" }}>
-          <View style={{ flex: 1, maxWidth: "25%", alignItems: "center" }}>
-            <Image style={styles.cvimage} src={imageUrl} />
-          </View>
-          <View style={{ flex: 2 }}>
-            <Text style={styles.sectionHeading}>{name}</Text>
-            <Text style={styles.sectionText}>Osoite: {address}</Text>
-            <Text style={styles.sectionText}>Puhelinnumero: {phone}</Text>
-            <Text style={styles.sectionText}>Sähköposti: {email}</Text>
-          </View>
-        </View>
-        <View style={styles.borderYla}>
-          <View style={{ flex: 1, maxWidth: "25%" }}>
-            <Text style={styles.heading}>Yhteenveto</Text>
-          </View>
-          <View style={{ flex: 2 }}>
-            <Text style={styles.infoText}>{description}</Text>
-          </View>
-        </View>
-        <View style={styles.borderYla}>
-          <View style={{ flex: 1, maxWidth: "25%" }}>
-            <Text style={styles.heading}>Koulutus</Text>
-          </View>
-          <View style={{ flex: 2 }}>
-            <View style={{ flexDirection: "row" }}>
-              <View style={{ flex: 1 }}>
-                <Text style={styles.sectionHeading}>{education}</Text>
-              </View>
-              <View style={{ flex: 2 }}>
-                <Text style={styles.sectionDate}>{eduYears}</Text>
-              </View>
-            </View>
-            <Text style={styles.sectionText}>{major}</Text>
-            <Text style={styles.sectionText}>{gpa}</Text>
-          </View>
-        </View>
-        <View style={styles.borderYla}>
-          <View style={{ flex: 1, maxWidth: "25%" }}>
-            <Text style={styles.heading}>Työkokemus</Text>
-          </View>
-          <View style={{ flex: 2 }}>
-            <View style={{ flexDirection: "row" }}>
-              <View style={{ flex: 1 }}>
-                <Text style={styles.sectionHeading}>{workExperience}</Text>
-              </View>
-              <View style={{ flex: 2 }}>
-                <Text style={styles.sectionDate}>{workYears}</Text>
-              </View>
-            </View>
-            <Text style={styles.sectionText}>{workDesc}</Text>
-          </View>
-        </View>
-        <View style={styles.borderYla}>
-          <View style={{ flex: 1, maxWidth: "25%" }}>
-            <Text style={styles.heading}>Suosittelijat</Text>
-          </View>
-          <View style={{ flex: 2 }}>
-            <Text style={styles.sectionHeading}>{referees}</Text>
-            <Text style={styles.sectionText}>{refereeCompany}</Text>
-            <Text style={styles.sectionText}>{refereeRelationship}</Text>
-            <Text style={styles.sectionText}>{refereeMail}</Text>
-            <Text style={styles.sectionText}>{refereePhone}</Text>
-          </View>
-        </View>
-      </Page>
-    </Document>
-  );
 
   return (
     <>
@@ -246,24 +82,26 @@ function Wizard() {
             <p>Esikatselu</p>
             <PDFViewer>
               <CVDocument
-                {...{
-                  name,
-                  phone,
-                  address,
-                  email,
-                  description,
-                  education,
-                  eduYears,
-                  major,
-                  gpa,
-                  workExperience,
-                  workDesc,
-                  referees,
-                  refereeCompany,
-                  refereeRelationship,
-                  refereeMail,
-                  refereePhone,
-                }}
+                date={date}
+                name={name}
+                address={address}
+                phone={phone}
+                email={email}
+                description={description}
+                setDescription={setDescription}
+                education={education}
+                eduYears={eduYears}
+                major={major}
+                gpa={gpa}
+                workExperience={workExperience}
+                workDesc={workDesc}
+                workYears={workYears}
+                referees={referees}
+                refereeMail={refereeMail}
+                refereePhone={refereePhone}
+                refereeCompany={refereeCompany}
+                refereeRelationship={refereeRelationship}
+                imageUrl={imageUrl}
               />
             </PDFViewer>
             <div className="py-2">
@@ -271,18 +109,26 @@ function Wizard() {
                 <PDFDownloadLink
                   document={
                     <CVDocument
-                      {...{
-                        name,
-                        phone,
-                        address,
-                        email,
-                        education,
-                        workExperience,
-                        referees,
-                        major,
-                        gpa,
-                        eduYears,
-                      }}
+                      date={date}
+                      name={name}
+                      address={address}
+                      phone={phone}
+                      email={email}
+                      description={description}
+                      setDescription={setDescription}
+                      education={education}
+                      eduYears={eduYears}
+                      major={major}
+                      gpa={gpa}
+                      workExperience={workExperience}
+                      workDesc={workDesc}
+                      workYears={workYears}
+                      referees={referees}
+                      refereeMail={refereeMail}
+                      refereePhone={refereePhone}
+                      refereeCompany={refereeCompany}
+                      refereeRelationship={refereeRelationship}
+                      imageUrl={imageUrl}
                     />
                   }
                   fileName="cv.pdf"
@@ -482,6 +328,7 @@ function Wizard() {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 }

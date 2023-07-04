@@ -22,3 +22,7 @@ body {
 *::before {
   box-sizing: border-box;
 }
+
+iframe {
+  width: 100%;
+}
