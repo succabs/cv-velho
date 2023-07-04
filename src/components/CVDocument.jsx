@@ -9,10 +9,31 @@ import {
   View,
 } from "@react-pdf/renderer";
 import garamond from "../assets/fonts/CormorantGaramond-Regular.ttf"; // Tell webpack this JS file uses this image
-
+import georgia from "../assets/fonts/Georgia.ttf";
+import arial from "../assets/fonts/ArialTh.ttf";
+import verdana from "../assets/fonts/Verdana.ttf";
+import calibri from "../assets/fonts/Calibri.ttf";
 Font.register({
   family: "Garamond",
   src: garamond,
+});
+Font.register({
+  family: "Georgia",
+  src: georgia,
+});
+Font.register({
+  family: "Arial",
+  src: arial,
+});
+
+Font.register({
+  family: "Verdana",
+  src: verdana,
+});
+
+Font.register({
+  family: "Calibri",
+  src: calibri,
 });
 
 const CVDocument = ({
@@ -35,11 +56,12 @@ const CVDocument = ({
   refereeCompany,
   refereeRelationship,
   imageUrl,
+  selectedFont,
 }) => {
   const styles = StyleSheet.create({
     page: {
       backgroundColor: "#FFFFFF",
-      fontFamily: "Garamond",
+      fontFamily: selectedFont,
       lineHeight: 1.2,
     },
     date: {

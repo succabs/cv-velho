@@ -1,11 +1,19 @@
 import "./App.css";
 import cvpic from "./assets/cvimage.jpeg"; // Tell webpack this JS file uses this image
-import CVDocument from "./components/CVDocument";
+import ThemeSelect from "./components/ThemeSelect";
+import FontSelect from "./components/FontSelect";
+import LangSelect from "./components/LangSelect";
+import PreviewSection from "./components/PreviewSection";
 import Footer from "./components/Footer";
 import React, { useState } from "react";
-import { PDFDownloadLink, PDFViewer } from "@react-pdf/renderer";
 
 function Wizard() {
+  const [selectedFont, setSelectedFont] = useState("Garamond");
+
+  const handleFontSelect = (font) => {
+    setSelectedFont(font);
+  };
+
   const [date, setDate] = useState("12.6.2023");
   const [name, setName] = useState("Erkki Esimerkki");
   const [address, setAddress] = useState("Katutie 7, 40740 Jyväskylä");
@@ -47,101 +55,42 @@ function Wizard() {
   return (
     <>
       <div className="flex">
+        {/* Menu Section */}
         <div className="w-1/4 h-screen text-white p-4 border-r-4 border-orange-500 p-4 flex flex-col">
           <ul className="space-y-2">
             <li>Teema</li>
-            <div className="relative w-full lg:max-w-sm">
-              <select className="w-full p-2.5 text-gray-100 bg-gray-800 border rounded-md shadow-sm outline-none appearance-none focus:border-indigo-600">
-                <option>Pohja 1</option>
-                <option>Pohja 2</option>
-                <option>Pohja 3</option>
-                <option>Pohja 4</option>
-              </select>
-            </div>
+            <ThemeSelect />
             <li>Fontti</li>
-            <div className="relative w-full lg:max-w-sm">
-              <select className="w-full p-2.5 text-gray-100 bg-gray-800 border rounded-md shadow-sm outline-none appearance-none focus:border-indigo-600">
-                <option>Arial</option>
-                <option>Calibri</option>
-                <option>Garamond</option>
-                <option>Georgia</option>
-                <option>Verdana</option>
-              </select>
-            </div>
+            <FontSelect onSelectFont={handleFontSelect} />
             <li>Kieli</li>
-            <div className="relative w-full lg:max-w-sm">
-              <select className="w-full p-2.5 text-gray-100 bg-gray-800 border rounded-md shadow-sm outline-none appearance-none focus:border-indigo-600">
-                <option>Suomi</option>
-                <option>Englanti</option>
-                <option>Ruotsi</option>
-              </select>
-            </div>
+            <LangSelect />
           </ul>
 
-          <div className="text-center py-4 mt-auto">
-            <p>Esikatselu</p>
-            <PDFViewer>
-              <CVDocument
-                date={date}
-                name={name}
-                address={address}
-                phone={phone}
-                email={email}
-                description={description}
-                setDescription={setDescription}
-                education={education}
-                eduYears={eduYears}
-                major={major}
-                gpa={gpa}
-                workExperience={workExperience}
-                workDesc={workDesc}
-                workYears={workYears}
-                referees={referees}
-                refereeMail={refereeMail}
-                refereePhone={refereePhone}
-                refereeCompany={refereeCompany}
-                refereeRelationship={refereeRelationship}
-                imageUrl={imageUrl}
-              />
-            </PDFViewer>
-            <div className="py-2">
-              <button className="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded-full">
-                <PDFDownloadLink
-                  document={
-                    <CVDocument
-                      date={date}
-                      name={name}
-                      address={address}
-                      phone={phone}
-                      email={email}
-                      description={description}
-                      setDescription={setDescription}
-                      education={education}
-                      eduYears={eduYears}
-                      major={major}
-                      gpa={gpa}
-                      workExperience={workExperience}
-                      workDesc={workDesc}
-                      workYears={workYears}
-                      referees={referees}
-                      refereeMail={refereeMail}
-                      refereePhone={refereePhone}
-                      refereeCompany={refereeCompany}
-                      refereeRelationship={refereeRelationship}
-                      imageUrl={imageUrl}
-                    />
-                  }
-                  fileName="cv.pdf"
-                >
-                  {({ blob, url, loading, error }) =>
-                    loading ? "Luodaan pdf..." : "Lataa pdf"
-                  }
-                </PDFDownloadLink>
-              </button>
-            </div>
-          </div>
+          <PreviewSection
+            date={date}
+            name={name}
+            address={address}
+            phone={phone}
+            email={email}
+            description={description}
+            education={education}
+            eduYears={eduYears}
+            major={major}
+            gpa={gpa}
+            workExperience={workExperience}
+            workDesc={workDesc}
+            workYears={workYears}
+            referees={referees}
+            refereeMail={refereeMail}
+            refereePhone={refereePhone}
+            refereeCompany={refereeCompany}
+            refereeRelationship={refereeRelationship}
+            imageUrl={imageUrl}
+            selectedFont={selectedFont}
+          />
         </div>
-        {/* CV Section */}
+
+        {/* CV-modifying Section */}
         <div id="cv-section" className="w-3/4 p-2 m-8 text-dark bg-white">
           {/* CV content */}
           <div className="p-4">
@@ -149,6 +98,7 @@ function Wizard() {
             <p
               className="bg-slate-100 text-right"
               contentEditable
+              suppressContentEditableWarning
               onBlur={(e) => setDate(e.target.textContent)}
             >
               {date}
@@ -213,6 +163,7 @@ function Wizard() {
                 <p
                   className="bg-slate-100"
                   contentEditable
+                  suppressContentEditableWarning
                   onBlur={(e) => setDescription(e.target.textContent)}
                 >
                   {description}
@@ -291,6 +242,7 @@ function Wizard() {
                 <p
                   className="bg-slate-100"
                   contentEditable
+                  suppressContentEditableWarning
                   onBlur={(e) => setReferees(e.target.textContent)}
                 >
                   {referees}
@@ -328,6 +280,7 @@ function Wizard() {
           </div>
         </div>
       </div>
+
       <Footer />
     </>
   );
