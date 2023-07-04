@@ -91,12 +91,12 @@ function Wizard() {
         </div>
 
         {/* CV-modifying Section */}
-        <div id="cv-section" className="w-3/4 p-2 m-8 text-dark bg-white">
+        <div id="cv-section" className="w-3/4 p-2 m-8 text-white bg-dark">
           {/* CV content */}
           <div className="p-4">
             {/* Editable text fields */}
             <p
-              className="bg-slate-100 text-right"
+              className="bg-dark text-right"
               contentEditable
               suppressContentEditableWarning
               onBlur={(e) => setDate(e.target.textContent)}
@@ -105,7 +105,7 @@ function Wizard() {
             </p>
             <div className="flex">
               <div className="w-1/4">
-                <img className="w-1/2" src={imageUrl} alt="Logo" />
+                <img className="w-2/3" src={imageUrl} alt="Logo" />
                 <input
                   type="file"
                   accept="image/*"
@@ -121,37 +121,30 @@ function Wizard() {
                 </button>
               </div>
               <div className="w-3/4">
-                <p
-                  className="bg-slate-100"
-                  contentEditable
-                  onBlur={(e) => setName(e.target.textContent)}
-                >
-                  {name}
-                </p>
-                <p>Puhelinnumero</p>
-                <p
-                  className="bg-slate-100"
-                  contentEditable
-                  onBlur={(e) => setPhone(e.target.textContent)}
-                >
-                  {phone}
-                </p>
-                <p>Osoite</p>
-                <p
-                  className="bg-slate-100"
-                  contentEditable
-                  onBlur={(e) => setAddress(e.target.textContent)}
-                >
-                  {address}
-                </p>
-                <p>Sähköposti</p>
-                <p
-                  className="bg-slate-100"
-                  contentEditable
-                  onBlur={(e) => setEmail(e.target.textContent)}
-                >
-                  {email}
-                </p>
+                <input
+                  placeholder="Erkki Esimerkki"
+                  className=" text-black placeholder-gray-600 w-full px-4 py-2.5 mt-2 text-base   transition duration-500 ease-in-out transform border-transparent rounded-lg bg-gray-200  focus:border-blueGray-500 focus:bg-white dark:focus:bg-gray-800 focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                />
+                <input
+                  placeholder="Puhelinnumero"
+                  className=" text-black placeholder-gray-600 w-full px-4 py-2.5 mt-2 text-base   transition duration-500 ease-in-out transform border-transparent rounded-lg bg-gray-200  focus:border-blueGray-500 focus:bg-white dark:focus:bg-gray-800 focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400"
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                />
+                <input
+                  placeholder="Osoite"
+                  className=" text-black placeholder-gray-600 w-full px-4 py-2.5 mt-2 text-base   transition duration-500 ease-in-out transform border-transparent rounded-lg bg-gray-200  focus:border-blueGray-500 focus:bg-white dark:focus:bg-gray-800 focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400"
+                  value={address}
+                  onChange={(e) => setAddress(e.target.value)}
+                />
+                <input
+                  placeholder="Sähköposti"
+                  className=" text-black placeholder-gray-600 w-full px-4 py-2.5 mt-2 text-base   transition duration-500 ease-in-out transform border-transparent rounded-lg bg-gray-200  focus:border-blueGray-500 focus:bg-white dark:focus:bg-gray-800 focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
               </div>
             </div>
 
