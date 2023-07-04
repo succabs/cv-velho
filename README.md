@@ -2,14 +2,20 @@
 
 React app for creating a Curriculum Vitae.
 This app is made for learning purposes.
-Please refer to the diary.md to read about the technical choices.
+Should not be used in real cv creation at this point.
+You have been warned.
+
+The app has the following features:
+
+- Beautiful landing page
+- Menu and preview of the CV
+- Export the CV to PDF
 
 The app will have the following features:
 
-- Easy-to-use CV maker
 - Helps user in the process, gives tips
-- Different themes to choose from
-- Export to PDF
+- Different themes, fonts and languages to choose from
+
 
 # Install & run
 
@@ -19,6 +25,6 @@ The app will have the following features:
 
 3. npm run dev
 
-4. //write a fabulous cv
+4. //create a fabulous cv
 
 5. //land a job
