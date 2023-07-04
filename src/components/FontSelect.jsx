@@ -12,9 +12,9 @@ const FontSelect = ({ onSelectFont }) => {
         className="w-full p-2.5 text-gray-100 bg-gray-800 border rounded-md shadow-sm outline-none appearance-none focus:border-indigo-600"
         onChange={handleFontChange}
       >
+        <option>Garamond</option>
         <option>Arial</option>
         <option>Calibri</option>
-        <option>Garamond</option>
         <option>Georgia</option>
         <option>Verdana</option>
       </select>

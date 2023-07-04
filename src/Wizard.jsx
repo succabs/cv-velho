@@ -56,7 +56,7 @@ function Wizard() {
     <>
       <div className="flex">
         {/* Menu Section */}
-        <div className="w-1/4 h-screen text-white p-4 border-r-4 border-orange-500 p-4 flex flex-col">
+        <div className="w-1/4 h-screen text-white p-4  p-4 flex flex-col">
           <ul className="space-y-2">
             <li>Teema</li>
             <ThemeSelect />
@@ -91,36 +91,41 @@ function Wizard() {
         </div>
 
         {/* CV-modifying Section */}
-        <div id="cv-section" className="w-3/4 p-2 m-8 text-white bg-dark">
+        <div
+          id="cv-section"
+          className="w-3/4 py-2 pr-2 mt-8 mr-4 text-white bg-dark border-l-4 border-orange-500"
+        >
           {/* CV content */}
-          <div className="p-4">
-            {/* Editable text fields */}
-            <p
-              className="bg-dark text-right"
-              contentEditable
-              suppressContentEditableWarning
-              onBlur={(e) => setDate(e.target.textContent)}
-            >
-              {date}
-            </p>
+          <div className="">
+            {/* Picture */}
             <div className="flex">
               <div className="w-1/4">
-                <img className="w-2/3" src={imageUrl} alt="Logo" />
-                <input
-                  type="file"
-                  accept="image/*"
-                  id="upload-image"
-                  style={{ display: "none" }}
-                  onChange={handleImageUpload}
-                />
-                <button
-                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                  onClick={handleImageClick}
-                >
-                  Lataa kuva
-                </button>
+                <div className="flex flex-col items-center">
+                  <img className="w-2/3" src={imageUrl} alt="Logo" />
+                  <input
+                    type="file"
+                    accept="image/*"
+                    id="upload-image"
+                    style={{ display: "none" }}
+                    onChange={handleImageUpload}
+                  />
+                  <button
+                    className="mt-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                    onClick={handleImageClick}
+                  >
+                    Lataa kuva
+                  </button>
+                </div>
               </div>
-              <div className="w-3/4">
+
+              <div className="w-3/4 pb-4">
+                <h2>Yhteystiedot</h2>
+                <input
+                  placeholder="Päivämäärä"
+                  className=" text-black placeholder-gray-600 w-1/4 px-4 py-2.5 mt-2 text-base   transition duration-500 ease-in-out transform border-transparent rounded-lg bg-gray-200  focus:border-blueGray-500 focus:bg-white dark:focus:bg-gray-800 focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400"
+                  value={date}
+                  onChange={(e) => setDate(e.target.value)}
+                />
                 <input
                   placeholder="Erkki Esimerkki"
                   className=" text-black placeholder-gray-600 w-full px-4 py-2.5 mt-2 text-base   transition duration-500 ease-in-out transform border-transparent rounded-lg bg-gray-200  focus:border-blueGray-500 focus:bg-white dark:focus:bg-gray-800 focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400"
@@ -147,127 +152,114 @@ function Wizard() {
                 />
               </div>
             </div>
-
-            <div className="flex border-t-2">
-              <div className="w-1/4">
+            {/* Summary*/}
+            <div className="flex pb-4">
+              <div className="w-1/4 pl-8 pt-0">
                 <h2>Yhteenveto</h2>
               </div>
               <div className="w-3/4">
-                <p
-                  className="bg-slate-100"
-                  contentEditable
-                  suppressContentEditableWarning
-                  onBlur={(e) => setDescription(e.target.textContent)}
-                >
-                  {description}
-                </p>
+                <input
+                  placeholder="Yhteenveto"
+                  className=" text-black placeholder-gray-600 w-full px-4 py-2.5 mt-2 text-base   transition duration-500 ease-in-out transform border-transparent rounded-lg bg-gray-200  focus:border-blueGray-500 focus:bg-white dark:focus:bg-gray-800 focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400"
+                  value={description}
+                  onChange={(e) => setDescription(e.target.value)}
+                />
               </div>
             </div>
-
-            <div className="flex border-t-2">
-              <div className="w-1/4">
+            {/* Education */}
+            <div className="flex pb-4">
+              <div className="w-1/4 pl-8">
                 <h2>Koulutus</h2>
               </div>
               <div className="w-3/4">
-                <p
-                  className="bg-slate-100 text-right"
-                  contentEditable
-                  onBlur={(e) => setEduYears(e.target.textContent)}
-                >
-                  {eduYears}
-                </p>
-                <p
-                  className="bg-slate-100"
-                  contentEditable
-                  onBlur={(e) => setEducation(e.target.textContent)}
-                >
-                  {education}
-                </p>
-                <p
-                  className="bg-slate-100"
-                  contentEditable
-                  onBlur={(e) => setMajor(e.target.textContent)}
-                >
-                  {major}
-                </p>
-                <p
-                  className="bg-slate-100"
-                  contentEditable
-                  onBlur={(e) => setGpa(e.target.textContent)}
-                >
-                  {gpa}
-                </p>
+                <input
+                  placeholder="Koulupaikka"
+                  className=" text-black placeholder-gray-600 w-3/4 px-2 py-2.5 mt-2 text-base   transition duration-500 ease-in-out transform border-transparent rounded-lg bg-gray-200  focus:border-blueGray-500 focus:bg-white dark:focus:bg-gray-800 focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400"
+                  value={education}
+                  onChange={(e) => setEducation(e.target.value)}
+                />
+                <input
+                  placeholder="Päivämäärä"
+                  className=" text-black placeholder-gray-600 w-1/4 px-2 py-2.5 mt-2 text-base   transition duration-500 ease-in-out transform border-transparent rounded-lg bg-gray-200  focus:border-blueGray-500 focus:bg-white dark:focus:bg-gray-800 focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400"
+                  value={eduYears}
+                  onChange={(e) => setEduYears(e.target.value)}
+                />
+                <input
+                  placeholder="Oppiaine"
+                  className=" text-black placeholder-gray-600 w-full px-2 py-2.5 mt-2 text-base   transition duration-500 ease-in-out transform border-transparent rounded-lg bg-gray-200  focus:border-blueGray-500 focus:bg-white dark:focus:bg-gray-800 focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400"
+                  value={major}
+                  onChange={(e) => setMajor(e.target.value)}
+                />
+                <input
+                  placeholder="Keskiarvo"
+                  className=" text-black placeholder-gray-600 w-full px-2 py-2.5 mt-2 text-base   transition duration-500 ease-in-out transform border-transparent rounded-lg bg-gray-200  focus:border-blueGray-500 focus:bg-white dark:focus:bg-gray-800 focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400"
+                  value={gpa}
+                  onChange={(e) => setGpa(e.target.value)}
+                />
               </div>
             </div>
-            <div className="flex border-t-2">
-              <div className="w-1/4">
+            {/* Work */}
+            <div className="flex pb-4">
+              <div className="w-1/4 pl-8">
                 <h2>Työkokemus</h2>
               </div>
               <div className="w-3/4">
-                <p
-                  className="bg-slate-100  text-right"
-                  contentEditable
-                  onBlur={(e) => setWorkYears(e.target.textContent)}
-                >
-                  {workYears}
-                </p>
-                <p
-                  className="bg-slate-100"
-                  contentEditable
-                  onBlur={(e) => setWorkExperience(e.target.textContent)}
-                >
-                  {workExperience}
-                </p>
-                <p
-                  className="bg-slate-100"
-                  contentEditable
-                  onBlur={(e) => setWorkDesc(e.target.textContent)}
-                >
-                  {workDesc}
-                </p>
+                <input
+                  placeholder="Työpaikka"
+                  className=" text-black placeholder-gray-600 w-3/4 px-2 py-2.5 mt-2 text-base   transition duration-500 ease-in-out transform border-transparent rounded-lg bg-gray-200  focus:border-blueGray-500 focus:bg-white dark:focus:bg-gray-800 focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400"
+                  value={workExperience}
+                  onChange={(e) => setWorkExperience(e.target.value)}
+                />
+                <input
+                  placeholder="Päivämäärä"
+                  className=" text-black placeholder-gray-600 w-1/4 px-2 py-2.5 mt-2 text-base   transition duration-500 ease-in-out transform border-transparent rounded-lg bg-gray-200  focus:border-blueGray-500 focus:bg-white dark:focus:bg-gray-800 focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400"
+                  value={workYears}
+                  onChange={(e) => setWorkYears(e.target.value)}
+                />
+                <input
+                  placeholder="Työkuvaus"
+                  className=" text-black placeholder-gray-600 w-full px-2 py-2.5 mt-2 text-base   transition duration-500 ease-in-out transform border-transparent rounded-lg bg-gray-200  focus:border-blueGray-500 focus:bg-white dark:focus:bg-gray-800 focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400"
+                  value={workDesc}
+                  onChange={(e) => setWorkDesc(e.target.value)}
+                />
               </div>
             </div>
-            <div className="flex border-t-2">
-              <div className="w-1/4">
+            {/* Referrals */}
+            <div className="flex pb-4">
+              <div className="w-1/4 pl-8 ">
                 <h2>Suosittelijat</h2>
               </div>
               <div className="w-3/4">
-                <p
-                  className="bg-slate-100"
-                  contentEditable
-                  suppressContentEditableWarning
-                  onBlur={(e) => setReferees(e.target.textContent)}
-                >
-                  {referees}
-                </p>
-                <p
-                  className="bg-slate-100"
-                  contentEditable
-                  onBlur={(e) => setRefereeCompany(e.target.textContent)}
-                >
-                  {refereeCompany}
-                </p>
-                <p
-                  className="bg-slate-100"
-                  contentEditable
-                  onBlur={(e) => setRefereeRelationship(e.target.textContent)}
-                >
-                  {refereeRelationship}
-                </p>
-                <p
-                  className="bg-slate-100"
-                  contentEditable
-                  onBlur={(e) => setRefereeMail(e.target.textContent)}
-                >
-                  {refereeMail}
-                </p>
-                <p
-                  className="bg-slate-100"
-                  contentEditable
-                  onBlur={(e) => setRefereePhone(e.target.textContent)}
-                >
-                  {refereePhone}
-                </p>
+                <input
+                  placeholder="Suosittelija"
+                  className=" text-black placeholder-gray-600 w-full px-2 py-2.5 mt-2 text-base   transition duration-500 ease-in-out transform border-transparent rounded-lg bg-gray-200  focus:border-blueGray-500 focus:bg-white dark:focus:bg-gray-800 focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400"
+                  value={referees}
+                  onChange={(e) => setReferees(e.target.value)}
+                />
+                <input
+                  placeholder="Suosittelijan työpaikka"
+                  className=" text-black placeholder-gray-600 w-full px-2 py-2.5 mt-2 text-base   transition duration-500 ease-in-out transform border-transparent rounded-lg bg-gray-200  focus:border-blueGray-500 focus:bg-white dark:focus:bg-gray-800 focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400"
+                  value={refereeCompany}
+                  onChange={(e) => setRefereeCompany(e.target.value)}
+                />
+                <input
+                  placeholder="Suhde suosittelijaan"
+                  className=" text-black placeholder-gray-600 w-full px-2 py-2.5 mt-2 text-base   transition duration-500 ease-in-out transform border-transparent rounded-lg bg-gray-200  focus:border-blueGray-500 focus:bg-white dark:focus:bg-gray-800 focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400"
+                  value={refereeRelationship}
+                  onChange={(e) => setRefereeRelationship(e.target.value)}
+                />
+                <input
+                  placeholder="Suosittelijan sähköposti"
+                  className=" text-black placeholder-gray-600 w-full px-2 py-2.5 mt-2 text-base   transition duration-500 ease-in-out transform border-transparent rounded-lg bg-gray-200  focus:border-blueGray-500 focus:bg-white dark:focus:bg-gray-800 focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400"
+                  value={refereeMail}
+                  onChange={(e) => setRefereeMail(e.target.value)}
+                />
+                <input
+                  placeholder="Suosittelijan puhelinnumero"
+                  className=" text-black placeholder-gray-600 w-full px-2 py-2.5 mt-2 text-base   transition duration-500 ease-in-out transform border-transparent rounded-lg bg-gray-200  focus:border-blueGray-500 focus:bg-white dark:focus:bg-gray-800 focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400"
+                  value={refereePhone}
+                  onChange={(e) => setRefereePhone(e.target.value)}
+                />
               </div>
             </div>
           </div>
