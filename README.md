@@ -9,13 +9,13 @@ The app has the following features:
 
 - Beautiful landing page
 - Menu and preview of the CV
+- 5 fonts to choose from
 - Export the CV to PDF
 
 The app will have the following features:
 
 - Helps user in the process, gives tips
-- Different themes, fonts and languages to choose from
-
+- Different themes and languages to choose from
 
 # Install & run
 
