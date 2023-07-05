@@ -57,7 +57,32 @@ const CVDocument = ({
   refereeRelationship,
   imageUrl,
   selectedFont,
+  selectedLanguage,
 }) => {
+  let addressLabel = "Osoite: ";
+  let phoneLabel = "Puhelinnumero: ";
+  let emailLabel = "Sähköposti: ";
+  let summaryLabel = "Yhteenveto";
+  let educationLabel = "Koulutus";
+  let jobLabel = "Työkokemus";
+  let refereesLabel = "Suosittelijat";
+  if (selectedLanguage === "Ruotsi") {
+    addressLabel = "Adress: ";
+    phoneLabel = "Telefonnummer: ";
+    emailLabel = "E-post: ";
+    summaryLabel = "Sammanfattning";
+    educationLabel = "Utbildning";
+    jobLabel = "Arbetserfarenhet";
+    refereesLabel = "Referenser";
+  } else if (selectedLanguage === "Englanti") {
+    addressLabel = "Address: ";
+    phoneLabel = "Phone number: ";
+    emailLabel = "Email: ";
+    summaryLabel = "Summary";
+    educationLabel = "Education";
+    jobLabel = "Work Experience";
+    refereesLabel = "Referees";
+  }
   const styles = StyleSheet.create({
     page: {
       backgroundColor: "#FFFFFF",
@@ -65,13 +90,15 @@ const CVDocument = ({
       lineHeight: 1.2,
     },
     date: {
-      margin: 10,
-      padding: 10,
       textAlign: "right",
+      paddingRight: 5,
+      paddingTop: 5,
     },
     borderYla: {
       flexDirection: "row",
       borderTop: 1,
+      paddingTop: 20,
+      paddingBottom: 12,
     },
     heading: {
       margin: 0,
@@ -105,39 +132,51 @@ const CVDocument = ({
       textAlign: "right",
     },
     cvimage: {
-      width: 100,
+      width: 125,
+      height: 125,
       padding: 5,
+      marginTop: 20,
       marginBottom: 10,
+      marginLeft: 10,
     },
   });
   return (
     <Document>
       <Page size="A4" style={styles.page}>
-        <View style={styles.date}>
-          <Text>{date}</Text>
-        </View>
         <View style={{ flexDirection: "row" }}>
-          <View style={{ flex: 1, maxWidth: "25%", alignItems: "center" }}>
+          <View style={{ flex: 1, maxWidth: "25%", alignItems: "left" }}>
             <Image style={styles.cvimage} src={imageUrl} />
           </View>
-          <View style={{ flex: 2 }}>
+          <View style={{ flex: 2, marginTop: 20 }}>
             <Text style={styles.sectionHeading}>{name}</Text>
-            <Text style={styles.sectionText}>Osoite: {address}</Text>
-            <Text style={styles.sectionText}>Puhelinnumero: {phone}</Text>
-            <Text style={styles.sectionText}>Sähköposti: {email}</Text>
+            <Text style={styles.sectionText}>
+              {addressLabel} {address}
+            </Text>
+            <Text style={styles.sectionText}>
+              {phoneLabel} {phone}
+            </Text>
+            <Text style={styles.sectionText}>
+              {emailLabel}
+              {email}
+            </Text>
+          </View>
+          <View style={styles.date}>
+            <Text>{date}</Text>
           </View>
         </View>
+        {/* Summary */}
         <View style={styles.borderYla}>
           <View style={{ flex: 1, maxWidth: "25%" }}>
-            <Text style={styles.heading}>Yhteenveto</Text>
+            <Text style={styles.heading}>{summaryLabel}</Text>
           </View>
           <View style={{ flex: 2 }}>
             <Text style={styles.infoText}>{description}</Text>
           </View>
         </View>
+        {/* Education */}
         <View style={styles.borderYla}>
           <View style={{ flex: 1, maxWidth: "25%" }}>
-            <Text style={styles.heading}>Koulutus</Text>
+            <Text style={styles.heading}>{educationLabel}</Text>
           </View>
           <View style={{ flex: 2 }}>
             <View style={{ flexDirection: "row" }}>
@@ -152,9 +191,10 @@ const CVDocument = ({
             <Text style={styles.sectionText}>{gpa}</Text>
           </View>
         </View>
+        {/* Job */}
         <View style={styles.borderYla}>
           <View style={{ flex: 1, maxWidth: "25%" }}>
-            <Text style={styles.heading}>Työkokemus</Text>
+            <Text style={styles.heading}>{jobLabel}</Text>
           </View>
           <View style={{ flex: 2 }}>
             <View style={{ flexDirection: "row" }}>
@@ -168,9 +208,10 @@ const CVDocument = ({
             <Text style={styles.sectionText}>{workDesc}</Text>
           </View>
         </View>
+        {/* Referees */}
         <View style={styles.borderYla}>
           <View style={{ flex: 1, maxWidth: "25%" }}>
-            <Text style={styles.heading}>Suosittelijat</Text>
+            <Text style={styles.heading}>{refereesLabel}</Text>
           </View>
           <View style={{ flex: 2 }}>
             <Text style={styles.sectionHeading}>{referees}</Text>

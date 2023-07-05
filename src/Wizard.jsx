@@ -9,12 +9,22 @@ import React, { useState } from "react";
 
 function Wizard() {
   const [selectedFont, setSelectedFont] = useState("Garamond");
+  const [selectedLanguage, setSelectedLanguage] = useState("Suomi");
+
+  const handleLanguageSelect = (language) => {
+    setSelectedLanguage(language);
+  };
 
   const handleFontSelect = (font) => {
     setSelectedFont(font);
   };
 
-  const [date, setDate] = useState("12.6.2023");
+  const current = new Date();
+  const currentDate = `${current.getDate()}.${
+    current.getMonth() + 1
+  }.${current.getFullYear()}`;
+
+  const [date, setDate] = useState(currentDate);
   const [name, setName] = useState("Erkki Esimerkki");
   const [address, setAddress] = useState("Katutie 7, 40740 Jyväskylä");
   const [phone, setPhone] = useState("+35840555987");
@@ -63,7 +73,7 @@ function Wizard() {
             <li>Fontti</li>
             <FontSelect onSelectFont={handleFontSelect} />
             <li>Kieli</li>
-            <LangSelect />
+            <LangSelect onSelectLanguage={handleLanguageSelect} />
           </ul>
 
           <PreviewSection
@@ -87,6 +97,7 @@ function Wizard() {
             refereeRelationship={refereeRelationship}
             imageUrl={imageUrl}
             selectedFont={selectedFont}
+            selectedLanguage={selectedLanguage}
           />
         </div>
 
@@ -123,7 +134,7 @@ function Wizard() {
                 <input
                   placeholder="Päivämäärä"
                   className=" text-black placeholder-gray-600 w-1/4 px-4 py-2.5 mt-2 text-base   transition duration-500 ease-in-out transform border-transparent rounded-lg bg-gray-200  focus:border-blueGray-500 focus:bg-white dark:focus:bg-gray-800 focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400"
-                  value={date}
+                  value={currentDate}
                   onChange={(e) => setDate(e.target.value)}
                 />
                 <input

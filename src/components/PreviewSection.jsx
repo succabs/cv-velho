@@ -24,6 +24,7 @@ const PreviewSection = ({
   refereeRelationship,
   imageUrl,
   selectedFont,
+  selectedLanguage,
 }) => {
   return (
     <div className="text-center py-4 mt-auto">
@@ -51,6 +52,7 @@ const PreviewSection = ({
           refereeRelationship={refereeRelationship}
           imageUrl={imageUrl}
           selectedFont={selectedFont}
+          selectedLanguage={selectedLanguage}
         />
       </PDFViewer>
       <div className="py-2">
@@ -79,6 +81,7 @@ const PreviewSection = ({
                 refereeRelationship={refereeRelationship}
                 imageUrl={imageUrl}
                 selectedFont={selectedFont}
+                selectedLanguage={selectedLanguage}
               />
             }
             fileName="cv.pdf"
