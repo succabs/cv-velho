@@ -34,7 +34,10 @@ The app will have the following features:
 
 Current functionality I am planning to add:
 
-- theme picker to work
 - cv styling on first theme (padding, margin, font sizes, picture placement etc)
-- buttons on top right of sections to add fields (job, education, etc)
+- theme picker to work
+- more themes
+- button to add sections (job, education, etc)
+- button to remove sections/fields/etc
 - pop-up button to show tips
+- basic styling modification
