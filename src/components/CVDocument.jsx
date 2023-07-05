@@ -43,18 +43,9 @@ const CVDocument = ({
   phone,
   email,
   description,
-  education,
-  eduYears,
-  major,
-  gpa,
-  workExperience,
-  workDesc,
-  workYears,
-  referees,
-  refereeMail,
-  refereePhone,
-  refereeCompany,
-  refereeRelationship,
+  educationEntries,
+  workExperienceEntries,
+  refereesEntries,
   imageUrl,
   selectedFont,
   selectedLanguage,
@@ -174,53 +165,65 @@ const CVDocument = ({
           </View>
         </View>
         {/* Education */}
-        <View style={styles.borderYla}>
-          <View style={{ flex: 1, maxWidth: "25%" }}>
-            <Text style={styles.heading}>{educationLabel}</Text>
-          </View>
-          <View style={{ flex: 2 }}>
-            <View style={{ flexDirection: "row" }}>
-              <View style={{ flex: 1 }}>
-                <Text style={styles.sectionHeading}>{education}</Text>
-              </View>
-              <View style={{ flex: 2 }}>
-                <Text style={styles.sectionDate}>{eduYears}</Text>
-              </View>
+        {educationEntries.map((entry) => (
+          <View key={entry.id} style={styles.borderYla}>
+            <View style={{ flex: 1, maxWidth: "25%" }}>
+              <Text style={styles.heading}>{educationLabel}</Text>
             </View>
-            <Text style={styles.sectionText}>{major}</Text>
-            <Text style={styles.sectionText}>{gpa}</Text>
-          </View>
-        </View>
-        {/* Job */}
-        <View style={styles.borderYla}>
-          <View style={{ flex: 1, maxWidth: "25%" }}>
-            <Text style={styles.heading}>{jobLabel}</Text>
-          </View>
-          <View style={{ flex: 2 }}>
-            <View style={{ flexDirection: "row" }}>
-              <View style={{ flex: 1 }}>
-                <Text style={styles.sectionHeading}>{workExperience}</Text>
+            <View style={{ flex: 2 }}>
+              <View style={{ flexDirection: "row" }}>
+                <View style={{ flex: 1 }}>
+                  <Text style={styles.sectionHeading}>{entry.education}</Text>
+                </View>
+                <View style={{ flex: 2 }}>
+                  <Text style={styles.sectionDate}>{entry.eduYears}</Text>
+                </View>
               </View>
-              <View style={{ flex: 2 }}>
-                <Text style={styles.sectionDate}>{workYears}</Text>
-              </View>
+              <Text style={styles.sectionText}>{entry.major}</Text>
+              <Text style={styles.sectionText}>{entry.gpa}</Text>
             </View>
-            <Text style={styles.sectionText}>{workDesc}</Text>
           </View>
-        </View>
+        ))}
+
+        {/* Work Experience */}
+        {workExperienceEntries.map((entry) => (
+          <View key={entry.id} style={styles.borderYla}>
+            <View style={{ flex: 1, maxWidth: "25%" }}>
+              <Text style={styles.heading}>{jobLabel}</Text>
+            </View>
+            <View style={{ flex: 2 }}>
+              <View style={{ flexDirection: "row" }}>
+                <View style={{ flex: 1 }}>
+                  <Text style={styles.sectionHeading}>
+                    {entry.workExperience}
+                  </Text>
+                </View>
+                <View style={{ flex: 2 }}>
+                  <Text style={styles.sectionDate}>{entry.workYears}</Text>
+                </View>
+              </View>
+              <Text style={styles.sectionText}>{entry.workDesc}</Text>
+            </View>
+          </View>
+        ))}
+
         {/* Referees */}
-        <View style={styles.borderYla}>
-          <View style={{ flex: 1, maxWidth: "25%" }}>
-            <Text style={styles.heading}>{refereesLabel}</Text>
+        {refereesEntries.map((entry) => (
+          <View key={entry.id} style={styles.borderYla}>
+            <View style={{ flex: 1, maxWidth: "25%" }}>
+              <Text style={styles.heading}>{refereesLabel}</Text>
+            </View>
+            <View style={{ flex: 2 }}>
+              <Text style={styles.sectionHeading}>{entry.referees}</Text>
+              <Text style={styles.sectionText}>{entry.refereeCompany}</Text>
+              <Text style={styles.sectionText}>
+                {entry.refereeRelationship}
+              </Text>
+              <Text style={styles.sectionText}>{entry.refereeMail}</Text>
+              <Text style={styles.sectionText}>{entry.refereePhone}</Text>
+            </View>
           </View>
-          <View style={{ flex: 2 }}>
-            <Text style={styles.sectionHeading}>{referees}</Text>
-            <Text style={styles.sectionText}>{refereeCompany}</Text>
-            <Text style={styles.sectionText}>{refereeRelationship}</Text>
-            <Text style={styles.sectionText}>{refereeMail}</Text>
-            <Text style={styles.sectionText}>{refereePhone}</Text>
-          </View>
-        </View>
+        ))}
       </Page>
     </Document>
   );

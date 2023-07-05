@@ -10,18 +10,9 @@ const PreviewSection = ({
   email,
   description,
   setDescription,
-  education,
-  eduYears,
-  major,
-  gpa,
-  workExperience,
-  workDesc,
-  workYears,
-  referees,
-  refereeMail,
-  refereePhone,
-  refereeCompany,
-  refereeRelationship,
+  educationEntries,
+  workExperienceEntries,
+  refereesEntries,
   imageUrl,
   selectedFont,
   selectedLanguage,
@@ -38,18 +29,9 @@ const PreviewSection = ({
           email={email}
           description={description}
           setDescription={setDescription}
-          education={education}
-          eduYears={eduYears}
-          major={major}
-          gpa={gpa}
-          workExperience={workExperience}
-          workDesc={workDesc}
-          workYears={workYears}
-          referees={referees}
-          refereeMail={refereeMail}
-          refereePhone={refereePhone}
-          refereeCompany={refereeCompany}
-          refereeRelationship={refereeRelationship}
+          educationEntries={educationEntries}
+          workExperienceEntries={workExperienceEntries}
+          refereesEntries={refereesEntries}
           imageUrl={imageUrl}
           selectedFont={selectedFont}
           selectedLanguage={selectedLanguage}
@@ -67,18 +49,9 @@ const PreviewSection = ({
                 email={email}
                 description={description}
                 setDescription={setDescription}
-                education={education}
-                eduYears={eduYears}
-                major={major}
-                gpa={gpa}
-                workExperience={workExperience}
-                workDesc={workDesc}
-                workYears={workYears}
-                referees={referees}
-                refereeMail={refereeMail}
-                refereePhone={refereePhone}
-                refereeCompany={refereeCompany}
-                refereeRelationship={refereeRelationship}
+                educationEntries={educationEntries}
+                workExperienceEntries={workExperienceEntries}
+                refereesEntries={refereesEntries}
                 imageUrl={imageUrl}
                 selectedFont={selectedFont}
                 selectedLanguage={selectedLanguage}
