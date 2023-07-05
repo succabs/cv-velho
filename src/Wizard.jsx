@@ -67,6 +67,12 @@ function Wizard() {
     setWorkExperienceEntries([...workExperienceEntries, newEntry]);
   };
 
+  const handleWorkExperienceChange = (value, index, field) => {
+    const updatedEntries = [...workExperienceEntries];
+    updatedEntries[index] = { ...updatedEntries[index], [field]: value };
+    setWorkExperienceEntries(updatedEntries);
+  };
+
   const handleAddReferee = () => {
     const newEntry = {
       id: Date.now(),
@@ -79,6 +85,12 @@ function Wizard() {
     setRefereesEntries([...refereesEntries, newEntry]);
   };
 
+  const handleRefereeChange = (value, index, field) => {
+    const updatedEntries = [...refereesEntries];
+    updatedEntries[index] = { ...updatedEntries[index], [field]: value };
+    setRefereesEntries(updatedEntries);
+  };
+
   const [date, setDate] = useState(currentDate);
   const [name, setName] = useState("Erkki Esimerkki");
   const [address, setAddress] = useState("Katutie 7, 40740 Jyväskylä");
@@ -87,22 +99,6 @@ function Wizard() {
   const [description, setDescription] = useState(
     "Nuori ja motivoitunut opiskelija. Valmis uuteen seikkailuun."
   );
-  const [education, setEducation] = useState("Jyväskylän yliopisto");
-  const [major, setMajor] = useState("Tietotekniikka");
-  const [gpa, setGpa] = useState("keskiarvo 3");
-  const [eduYears, setEduYears] = useState("2016-2020");
-  const [workExperience, setWorkExperience] = useState("Asiakaspalvelija");
-  const [workDesc, setWorkDesc] = useState(
-    "Toimin asiakaspalvelijana iloisella asenteella."
-  );
-  const [workYears, setWorkYears] = useState("06/20-08/20");
-  const [referees, setReferees] = useState("Seppo Suosittelija");
-  const [refereePhone, setRefereePhone] = useState("+35045665551");
-  const [refereeMail, setRefereeMail] = useState(
-    "seppo.suosittelija@osoite.com"
-  );
-  const [refereeCompany, setRefereeCompany] = useState("Suosittelijat Oy");
-  const [refereeRelationship, setRefereeRelationship] = useState("esimies");
   const [imageUrl, setImageUrl] = useState(cvpic);
 
   const handleImageClick = () => {
@@ -224,50 +220,176 @@ function Wizard() {
               </div>
             </div>
             {/* Education */}
-            {educationEntries.map((entry, index) => (
-              <div key={entry.id} className="flex pb-4">
-                <div className="w-1/4 pl-8">
-                  <h2>Koulutus</h2>
-                </div>
-                <div className="w-3/4">
-                  <input
-                    placeholder="Koulupaikka"
-                    className="text-black placeholder-gray-600 w-3/4 px-2 py-2.5 mt-2 text-base transition duration-500 ease-in-out transform border-transparent rounded-lg bg-gray-200 focus:border-blueGray-500 focus:bg-white dark:focus:bg-gray-800 focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400"
-                    value={entry.education}
-                    onChange={(e) =>
-                      handleEducationChange(e.target.value, index, "education")
-                    }
-                  />
-                  <input
-                    placeholder="Päivämäärä"
-                    className="text-black placeholder-gray-600 w-1/4 px-2 py-2.5 mt-2 text-base transition duration-500 ease-in-out transform border-transparent rounded-lg bg-gray-200 focus:border-blueGray-500 focus:bg-white dark:focus:bg-gray-800 focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400"
-                    value={entry.eduYears}
-                    onChange={(e) =>
-                      handleEducationChange(e.target.value, index, "eduYears")
-                    }
-                  />
-                  <input
-                    placeholder="Oppiaine"
-                    className="text-black placeholder-gray-600 w-full px-2 py-2.5 mt-2 text-base transition duration-500 ease-in-out transform border-transparent rounded-lg bg-gray-200 focus:border-blueGray-500 focus:bg-white dark:focus:bg-gray-800 focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400"
-                    value={entry.major}
-                    onChange={(e) =>
-                      handleEducationChange(e.target.value, index, "major")
-                    }
-                  />
-                  <input
-                    placeholder="Keskiarvo"
-                    className="text-black placeholder-gray-600 w-full px-2 py-2.5 mt-2 text-base transition duration-500 ease-in-out transform border-transparent rounded-lg bg-gray-200 focus:border-blueGray-500 focus:bg-white dark:focus:bg-gray-800 focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400"
-                    value={entry.gpa}
-                    onChange={(e) =>
-                      handleEducationChange(e.target.value, index, "gpa")
-                    }
-                  />
-                </div>
+            <div className="flex pb-4">
+              <div className="w-1/4 pl-8">
+                <h2>Koulutus</h2>
               </div>
-            ))}
+              <div className="w-3/4">
+                {educationEntries.map((entry, index) => (
+                  <div key={entry.id}>
+                    <input
+                      placeholder="Koulupaikka"
+                      className="text-black placeholder-gray-600 w-3/4 px-2 py-2.5 mt-2 text-base transition duration-500 ease-in-out transform border-transparent rounded-lg bg-gray-200 focus:border-blueGray-500 focus:bg-white dark:focus:bg-gray-800 focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400"
+                      value={entry.education}
+                      onChange={(e) =>
+                        handleEducationChange(
+                          e.target.value,
+                          index,
+                          "education"
+                        )
+                      }
+                    />
+                    <input
+                      placeholder="Päivämäärä"
+                      className="text-black placeholder-gray-600 w-1/4 px-2 py-2.5 mt-2 text-base transition duration-500 ease-in-out transform border-transparent rounded-lg bg-gray-200 focus:border-blueGray-500 focus:bg-white dark:focus:bg-gray-800 focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400"
+                      value={entry.eduYears}
+                      onChange={(e) =>
+                        handleEducationChange(e.target.value, index, "eduYears")
+                      }
+                    />
+                    <input
+                      placeholder="Oppiaine"
+                      className="text-black placeholder-gray-600 w-full px-2 py-2.5 mt-2 text-base transition duration-500 ease-in-out transform border-transparent rounded-lg bg-gray-200 focus:border-blueGray-500 focus:bg-white dark:focus:bg-gray-800 focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400"
+                      value={entry.major}
+                      onChange={(e) =>
+                        handleEducationChange(e.target.value, index, "major")
+                      }
+                    />
+                    <input
+                      placeholder="Keskiarvo"
+                      className="text-black placeholder-gray-600 w-full px-2 py-2.5 mt-2 text-base transition duration-500 ease-in-out transform border-transparent rounded-lg bg-gray-200 focus:border-blueGray-500 focus:bg-white dark:focus:bg-gray-800 focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400"
+                      value={entry.gpa}
+                      onChange={(e) =>
+                        handleEducationChange(e.target.value, index, "gpa")
+                      }
+                    />
+                  </div>
+                ))}
+                {/* Plus Button */}
+                <button onClick={handleAddEducation}>+</button>
+              </div>
+            </div>
 
-            {/* Plus Button */}
-            <button onClick={handleAddEducation}>+</button>
+            {/* Work Experience */}
+            <div className="flex pb-4">
+              <div className="w-1/4 pl-8">
+                <h2>Työkokemus</h2>
+              </div>
+              <div className="w-3/4">
+                {workExperienceEntries.map((entry, index) => (
+                  <div key={entry.id}>
+                    <input
+                      placeholder="Työpaikka"
+                      className="text-black placeholder-gray-600 w-3/4 px-2 py-2.5 mt-2 text-base transition duration-500 ease-in-out transform border-transparent rounded-lg bg-gray-200 focus:border-blueGray-500 focus:bg-white dark:focus:bg-gray-800 focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400"
+                      value={entry.workExperience}
+                      onChange={(e) =>
+                        handleWorkExperienceChange(
+                          e.target.value,
+                          index,
+                          "workExperience"
+                        )
+                      }
+                    />
+                    <input
+                      placeholder="Päivämäärä"
+                      className="text-black placeholder-gray-600 w-1/4 px-2 py-2.5 mt-2 text-base transition duration-500 ease-in-out transform border-transparent rounded-lg bg-gray-200 focus:border-blueGray-500 focus:bg-white dark:focus:bg-gray-800 focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400"
+                      value={entry.workYears}
+                      onChange={(e) =>
+                        handleWorkExperienceChange(
+                          e.target.value,
+                          index,
+                          "workYears"
+                        )
+                      }
+                    />
+                    <input
+                      placeholder="Kuvaus"
+                      className="text-black placeholder-gray-600 w-full px-2 py-2.5 mt-2 text-base transition duration-500 ease-in-out transform border-transparent rounded-lg bg-gray-200 focus:border-blueGray-500 focus:bg-white dark:focus:bg-gray-800 focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400"
+                      value={entry.workDesc}
+                      onChange={(e) =>
+                        handleWorkExperienceChange(
+                          e.target.value,
+                          index,
+                          "workDesc"
+                        )
+                      }
+                    />
+                  </div>
+                ))}
+                {/* Plus Button */}
+                <button onClick={handleAddWorkExperience}>+</button>
+              </div>
+            </div>
+            {/* Referees */}
+            <div className="flex pb-4">
+              <div className="w-1/4 pl-8">
+                <h2>Suosittelijat</h2>
+              </div>
+              <div className="w-3/4">
+                {refereesEntries.map((entry, index) => (
+                  <div key={entry.id}>
+                    <input
+                      placeholder="Nimi"
+                      className="text-black placeholder-gray-600 w-full px-2 py-2.5 mt-2 text-base transition duration-500 ease-in-out transform border-transparent rounded-lg bg-gray-200 focus:border-blueGray-500 focus:bg-white dark:focus:bg-gray-800 focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400"
+                      value={entry.referees}
+                      onChange={(e) =>
+                        handleRefereeChange(e.target.value, index, "referees")
+                      }
+                    />
+                    <input
+                      placeholder="Yritys"
+                      className="text-black placeholder-gray-600 w-full px-2 py-2.5 mt-2 text-base transition duration-500 ease-in-out transform border-transparent rounded-lg bg-gray-200 focus:border-blueGray-500 focus:bg-white dark:focus:bg-gray-800 focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400"
+                      value={entry.refereeCompany}
+                      onChange={(e) =>
+                        handleRefereeChange(
+                          e.target.value,
+                          index,
+                          "refereeCompany"
+                        )
+                      }
+                    />
+                    <input
+                      placeholder="Suhde"
+                      className="text-black placeholder-gray-600 w-full px-2 py-2.5 mt-2 text-base transition duration-500 ease-in-out transform border-transparent rounded-lg bg-gray-200 focus:border-blueGray-500 focus:bg-white dark:focus:bg-gray-800 focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400"
+                      value={entry.refereeRelationship}
+                      onChange={(e) =>
+                        handleRefereeChange(
+                          e.target.value,
+                          index,
+                          "refereeRelationship"
+                        )
+                      }
+                    />
+                    <input
+                      placeholder="Sähköposti"
+                      className="text-black placeholder-gray-600 w-full px-2 py-2.5 mt-2 text-base transition duration-500 ease-in-out transform border-transparent rounded-lg bg-gray-200 focus:border-blueGray-500 focus:bg-white dark:focus:bg-gray-800 focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400"
+                      value={entry.refereeMail}
+                      onChange={(e) =>
+                        handleRefereeChange(
+                          e.target.value,
+                          index,
+                          "refereeMail"
+                        )
+                      }
+                    />
+                    <input
+                      placeholder="Puhelinnumero"
+                      className="text-black placeholder-gray-600 w-full px-2 py-2.5 mt-2 text-base transition duration-500 ease-in-out transform border-transparent rounded-lg bg-gray-200 focus:border-blueGray-500 focus:bg-white dark:focus:bg-gray-800 focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400"
+                      value={entry.refereePhone}
+                      onChange={(e) =>
+                        handleRefereeChange(
+                          e.target.value,
+                          index,
+                          "refereePhone"
+                        )
+                      }
+                    />
+                  </div>
+                ))}
+                {/* Plus Button */}
+                <button onClick={handleAddReferee}>+</button>
+              </div>
+            </div>
           </div>
         </div>
       </div>

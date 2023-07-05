@@ -164,66 +164,71 @@ const CVDocument = ({
             <Text style={styles.infoText}>{description}</Text>
           </View>
         </View>
-        {/* Education */}
-        {educationEntries.map((entry) => (
-          <View key={entry.id} style={styles.borderYla}>
-            <View style={{ flex: 1, maxWidth: "25%" }}>
-              <Text style={styles.heading}>{educationLabel}</Text>
-            </View>
-            <View style={{ flex: 2 }}>
-              <View style={{ flexDirection: "row" }}>
-                <View style={{ flex: 1 }}>
-                  <Text style={styles.sectionHeading}>{entry.education}</Text>
-                </View>
-                <View style={{ flex: 2 }}>
-                  <Text style={styles.sectionDate}>{entry.eduYears}</Text>
-                </View>
-              </View>
-              <Text style={styles.sectionText}>{entry.major}</Text>
-              <Text style={styles.sectionText}>{entry.gpa}</Text>
-            </View>
+        {/* Education WORKS, WE AND REF NOT WORKING, COPY THIS STYLING TO THOSE */}
+        <View style={styles.borderYla}>
+          <View style={{ flex: 1, maxWidth: "25%" }}>
+            <Text style={styles.heading}>{educationLabel}</Text>
           </View>
-        ))}
-
+          <View style={{ flex: 2 }}>
+            {educationEntries.map((entry) => (
+              <View key={entry.id}>
+                <View style={{ flexDirection: "row" }}>
+                  <View style={{ flex: 1 }}>
+                    <Text style={styles.sectionHeading}>{entry.education}</Text>
+                  </View>
+                  <View style={{ flex: 2 }}>
+                    <Text style={styles.sectionDate}>{entry.eduYears}</Text>
+                  </View>
+                </View>
+                <Text style={styles.sectionText}>{entry.major}</Text>
+                <Text style={styles.sectionText}>{entry.gpa}</Text>
+              </View>
+            ))}
+          </View>
+        </View>
         {/* Work Experience */}
-        {workExperienceEntries.map((entry) => (
-          <View key={entry.id} style={styles.borderYla}>
-            <View style={{ flex: 1, maxWidth: "25%" }}>
-              <Text style={styles.heading}>{jobLabel}</Text>
-            </View>
-            <View style={{ flex: 2 }}>
-              <View style={{ flexDirection: "row" }}>
-                <View style={{ flex: 1 }}>
-                  <Text style={styles.sectionHeading}>
-                    {entry.workExperience}
-                  </Text>
-                </View>
-                <View style={{ flex: 2 }}>
-                  <Text style={styles.sectionDate}>{entry.workYears}</Text>
-                </View>
-              </View>
-              <Text style={styles.sectionText}>{entry.workDesc}</Text>
-            </View>
+        <View style={styles.borderYla}>
+          <View style={{ flex: 1, maxWidth: "25%" }}>
+            <Text style={styles.heading}>{jobLabel}</Text>
           </View>
-        ))}
+          <View style={{ flex: 2 }}>
+            {workExperienceEntries.map((entry) => (
+              <View key={entry.id}>
+                <View style={{ flexDirection: "row" }}>
+                  <View style={{ flex: 1 }}>
+                    <Text style={styles.sectionHeading}>
+                      {entry.workExperience}
+                    </Text>
+                  </View>
+                  <View style={{ flex: 2 }}>
+                    <Text style={styles.sectionDate}>{entry.workYears}</Text>
+                  </View>
+                </View>
+                <Text style={styles.sectionText}>{entry.workDesc}</Text>
+              </View>
+            ))}
+          </View>
+        </View>
 
         {/* Referees */}
-        {refereesEntries.map((entry) => (
-          <View key={entry.id} style={styles.borderYla}>
-            <View style={{ flex: 1, maxWidth: "25%" }}>
-              <Text style={styles.heading}>{refereesLabel}</Text>
-            </View>
-            <View style={{ flex: 2 }}>
-              <Text style={styles.sectionHeading}>{entry.referees}</Text>
-              <Text style={styles.sectionText}>{entry.refereeCompany}</Text>
-              <Text style={styles.sectionText}>
-                {entry.refereeRelationship}
-              </Text>
-              <Text style={styles.sectionText}>{entry.refereeMail}</Text>
-              <Text style={styles.sectionText}>{entry.refereePhone}</Text>
-            </View>
+        <View style={styles.borderYla}>
+          <View style={{ flex: 1, maxWidth: "25%" }}>
+            <Text style={styles.heading}>{refereesLabel}</Text>
           </View>
-        ))}
+          <View style={{ flex: 2 }}>
+            {refereesEntries.map((entry) => (
+              <View key={entry.id}>
+                <Text style={styles.sectionHeading}>{entry.referees}</Text>
+                <Text style={styles.sectionText}>{entry.refereeCompany}</Text>
+                <Text style={styles.sectionText}>
+                  {entry.refereeRelationship}
+                </Text>
+                <Text style={styles.sectionText}>{entry.refereeMail}</Text>
+                <Text style={styles.sectionText}>{entry.refereePhone}</Text>
+              </View>
+            ))}
+          </View>
+        </View>
       </Page>
     </Document>
   );
